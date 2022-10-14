@@ -40,18 +40,13 @@ except Exception as e:
 if os.path.isfile(data_file) == False:
     #If there isn't we proceed to the data extraction
     try:
-        decade1, name_decade1 = fp.create_time_range(1970,1980)
-        decade2, name_decade2 = fp.create_time_range(1980,1990)
-        decade3, name_decade3 = fp.create_time_range(1990,2000)
-        decade4, name_decade4 = fp.create_time_range(2000,2010)
-        decade5, name_decade5 = fp.create_time_range(2010,2020)
-    except Exception as e:
-        print(e)
-        print('liada create_time_range')    
-        
-        print('hasta aqui bien')
+        decade1 = fp.create_time_range(1970,1980)
+        decade2 = fp.create_time_range(1980,1990)
+        decade3 = fp.create_time_range(1990,2000)
+        decade4 = fp.create_time_range(2000,2010)
+        decade5 = fp.create_time_range(2010,2020)
         list_decades = [decade1,decade2,decade3,decade4,decade5]
-        names_decades = [name_decade1,name_decade2,name_decade3,name_decade4,name_decade5]
+        names_decades = ['1971-1980','1981-1990','1991-2000','2001-2010','2011-2020']
     except Exception as e: 
         print('Failure when trying to create the list of months and years...')
         print(e)
@@ -62,13 +57,8 @@ if os.path.isfile(data_file) == False:
 
     # we iterate through each year in the list of years to extract the results of the billboard songs and we append each df to the dictionary
     for decade,name in zip(list_decades,names_decades):
-        print('name : {name}')
-        print('decade : {decade}')
-
-
-
         # we create an empty dictionary where we will store the dataframes with the billboard song results for each decade
-        data_file = current_dir + '\\data' + f'{decade}.parquet'
+        data_file = current_dir + '\\data' + f'{name}.parquet'
         df_collection = {}
         start = time.time()
         for year,month in decade:
@@ -81,10 +71,10 @@ if os.path.isfile(data_file) == False:
             df_url['date'] = dt
             result = {parsing_date:df_url}
             df_collection[parsing_date] = df_url
-            
+
         end = time.time()
         loop_exec_time = end - start
-        logger.debug(f'exec time for loop to extract songs data for {decade}: {loop_exec_time}')
+        logger.debug(f'exec time for loop to extract songs data for {name}: {loop_exec_time}')
         start = time.time() 
         # we concatenate the dictionary values (dataframes) into a unique dataframe
         df_results = pd.concat(df_collection.values(),ignore_index=True)
@@ -122,9 +112,9 @@ if os.path.isfile(data_file) == False:
         
         end = time.time()
         loop_exec_time = end - start
-        logger.debug(f'exec time for loop to transform songs data for {decade}: {loop_exec_time}')
-        pd.to_parquet(data_file)
-        print(f'decade: {decade} completed')
+        logger.debug(f'exec time for loop to transform songs data for {name}: {loop_exec_time}')
+        df_results.to_parquet(data_file)
+        print(f'decade: {name} completed')
     
 
 

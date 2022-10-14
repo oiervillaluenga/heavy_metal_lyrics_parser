@@ -66,5 +66,4 @@ def create_time_range(start_year,end_year):
     list_years = range(start_year,end_year)
     months = range(1,13)    
     combined_list = list(itertools.product(list_years, months))
-    name_list = f'{start_year}_{end_year}'
-    return combined_list,name_list
+    return combined_list
