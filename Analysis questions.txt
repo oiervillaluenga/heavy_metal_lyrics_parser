@@ -10,7 +10,6 @@ Analisis of n1 songs attributes in a year
 	last_time_as_n1: max(parsing_time) when rank = 1 and previous rank = 1
 2) TIME Avg duration of songs in charts --> max(parsing_time) - entry_date
 
-
 3) QTY Avg qty of positions climbed of n1 songs from entry to peak (min(parsing_time) when rank = 1 and previous rank > 1 - min(entry date into charts))
 4) QTY Avg qty of positions climbed of n1 songs from bottom to peak (max(rank) when parsing_date(max_rank) < parsing_date(rank=1) - 1)
 5) QTY Avg qty of positions descended from top to bottom max(rank) when parsing_date(max(rank) > parsing_date(rank=1) 

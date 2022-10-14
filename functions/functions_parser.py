@@ -3,10 +3,13 @@ from datetime import date
 import logging
 import yaml
 from logging.handlers import TimedRotatingFileHandler
+import os
+import itertools
+
+current_dir = os.getcwd()
 
 # We open the configuration file and we load it into the config variable
-yaml_file = '//srv5/Produccion/NerdsZone/20.ML Dimensional Data/config.yaml'
-
+yaml_file = current_dir + '\\config.yaml'
 with open(yaml_file,"r") as f:
     config = yaml.load(f,Loader = yaml.FullLoader)
 
@@ -54,3 +57,14 @@ def convertir_fechas(date_text):
     except Exception:
         return False
 
+def create_time_range(start_year,end_year):
+    '''Creates a time range combining month and year for a period between start and end years
+    :return: list
+    >>>convertir_fechas(2022-01-01)
+    2022-12-31 00:00:00
+    '''
+    list_years = range(start_year,end_year)
+    months = range(1,13)    
+    combined_list = list(itertools.product(list_years, months))
+    name_list = f'{start_year}_{end_year}'
+    return combined_list,name_list

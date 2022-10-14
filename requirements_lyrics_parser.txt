@@ -4,7 +4,6 @@ auto-py-to-exe==2.23.0
 backcall==0.2.0
 bottle==0.12.23
 bottle-websocket==0.2.9
-certifi @ file:///C:/b/abs_ac29jvt43w/croot/certifi_1665076682579/work/certifi
 cffi==1.15.1
 cloudpickle==2.1.0
 colorama==0.4.5
@@ -24,6 +23,7 @@ jedi==0.18.1
 jupyter-core==4.11.1
 jupyter_client==7.3.5
 keyboard==0.13.5
+lxml==4.9.1
 matplotlib-inline==0.1.6
 nest-asyncio==1.5.5
 numpy==1.23.2
@@ -36,6 +36,7 @@ pickleshare==0.7.5
 prompt-toolkit==3.0.31
 psutil==5.9.2
 pure-eval==0.2.2
+pyarrow==9.0.0
 pycparser==2.21
 Pygments==2.13.0
 pyinstaller==5.4.1
