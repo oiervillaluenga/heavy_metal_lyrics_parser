@@ -1,0 +1,42 @@
+How has top chart music evolved during the years? 
+What are the properties of n1 songs?
+What are the properties of music charts?
+
+DESCRIPTIVE ANALYSIS FOR SONGS: ¿what are the generic attributes of n1 songs per year?
+
+Analisis of n1 songs attributes in a year 
+1) TIME Avg duration of n1 songs at n1 --> 
+	first_time_as_n1: min(parsing_time) when rank = 1 and previous rank > 1
+	last_time_as_n1: max(parsing_time) when rank = 1 and previous rank = 1
+2) TIME Avg duration of songs in charts --> max(parsing_time) - entry_date
+
+
+3) QTY Avg qty of positions climbed of n1 songs from entry to peak (min(parsing_time) when rank = 1 and previous rank > 1 - min(entry date into charts))
+4) QTY Avg qty of positions climbed of n1 songs from bottom to peak (max(rank) when parsing_date(max_rank) < parsing_date(rank=1) - 1)
+5) QTY Avg qty of positions descended from top to bottom max(rank) when parsing_date(max(rank) > parsing_date(rank=1) 
+6) QTY Position at exit max(parsing_date(rank))
+
+Create a chart with TIME (line chart)
+
+Create a chart with QTY (line chart)
+
+
+DESCRIPTIVE ANALYSIS FOR CHARTS: ¿what are the generic attributes of charts per year?
+
+1) QTY Number of different N1 songs in a given year / per month 
+2) QTY Number of different artists with n1 songs per year / per month
+
+
+Analisis of seasonality
+1) ¿Do the qty of different n1 songs / artists with n1 songs change per month? 
+
+OTHER POTENTIAL INFO 
+
+MUSIC GENRE
+SONG LENGTH
+WORDS IN LYRICS
+
+
+¿Can we do a sentiment analysis with the words in each n1 song?
+
+¿Is there any kind of NLP analysis that can be carried out to predict if a song will become n1?
