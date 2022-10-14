@@ -4,7 +4,7 @@ What are the properties of music charts?
 
 DESCRIPTIVE ANALYSIS FOR SONGS: ¿what are the generic attributes of n1 songs per year?
 
-Analisis of n1 songs attributes in a year 
+Analisis of n1 songs attributes in a year
 1) TIME Avg duration of n1 songs at n1 --> 
 	first_time_as_n1: min(parsing_time) when rank = 1 and previous rank > 1
 	last_time_as_n1: max(parsing_time) when rank = 1 and previous rank = 1
@@ -17,9 +17,12 @@ Analisis of n1 songs attributes in a year
 6) QTY Position at exit max(parsing_date(rank))
 
 Create a chart with TIME (line chart)
+CDF of TIME avg duration of n1 songs in peak and in charts (combined)
+Chart line of 
+
 
 Create a chart with QTY (line chart)
-
+CDF of positions climbed of n1 songs from entry to peak + positions from bottom to peak + positions from top to bottom
 
 DESCRIPTIVE ANALYSIS FOR CHARTS: ¿what are the generic attributes of charts per year?
 
