@@ -67,3 +67,14 @@ def create_time_range(start_year,end_year):
     months = range(1,13)    
     combined_list = list(itertools.product(list_years, months))
     return combined_list
+
+def create_year_range(year):
+    '''Creates a time range combining month and year for a period between start and end years
+    :return: list
+    >>>convertir_fechas(2022-01-01)
+    2022-12-31 00:00:00
+    '''
+    months = range(1,13) 
+    year_list = [year]   
+    combined_list = list(itertools.product(year_list, months))
+    return combined_list
