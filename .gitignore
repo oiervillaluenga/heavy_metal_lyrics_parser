@@ -12,9 +12,6 @@ funciones_ml/__pycache__/
 *.log
 Log_debug*
 
-# Configuration file 
-config.yaml
-
 # Pycache
 *.pyc
 

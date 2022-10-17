@@ -8,6 +8,7 @@ import datetime
 import itertools
 import os
 import tqdm
+import glob
 
 # We get the current directory 
 current_dir = os.getcwd()
@@ -114,5 +115,24 @@ if os.path.isfile(all_data_file) == False:
         else:    
             print('Data for this year already exists')
 
-    
-    # continue here to combine all parquet files into one file in case that a one unique file doesnt exist
+    # we use glob to combine all parquet files into one file in case that a one unique file doesnt exist
+
+    pattern = current_dir + '\\data*' 
+    path = glob.glob(pattern)
+    frames = [pd.read_parquet(f) for f in path]
+    resultant_dataframe = pd.concat(frames)
+    resultant_dataframe.to_parquet(all_data_file)
+    print('overall agreggated unique file for all results created')
+
+else:
+    print('overall agreggated result file already exists')  
+
+# continue here with the analysis    
+print('tralala')  
+
+
+
+
+        
+
+        
