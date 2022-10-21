@@ -1,0 +1,131 @@
+2022-10-14 17:15:25 - Rotating Log - DEBUG - Failure executing create_time_range
+2022-10-14 17:15:25 - Rotating Log - DEBUG - module 'functions.functions_parser' has no attribute 'create_time_range'
+2022-10-14 18:00:31 - Rotating Log - DEBUG - exec time for loop to extract songs data 686.0852053165436
+2022-10-14 18:53:53 - Rotating Log - DEBUG - Failure executing create_time_range
+2022-10-14 18:53:53 - Rotating Log - DEBUG - list expected at most 1 argument, got 5
+2022-10-14 18:54:27 - Rotating Log - DEBUG - Failure executing create_time_range
+2022-10-14 18:54:27 - Rotating Log - DEBUG - list expected at most 1 argument, got 5
+2022-10-14 19:06:57 - Rotating Log - DEBUG - exec time for loop to extract songs data for [(1970, 1), (1970, 2), (1970, 3), (1970, 4), (1970, 5), (1970, 6), (1970, 7), (1970, 8), (1970, 9), (1970, 10), (1970, 11), (1970, 12), (1971, 1), (1971, 2), (1971, 3), (1971, 4), (1971, 5), (1971, 6), (1971, 7), (1971, 8), (1971, 9), (1971, 10), (1971, 11), (1971, 12), (1972, 1), (1972, 2), (1972, 3), (1972, 4), (1972, 5), (1972, 6), (1972, 7), (1972, 8), (1972, 9), (1972, 10), (1972, 11), (1972, 12), (1973, 1), (1973, 2), (1973, 3), (1973, 4), (1973, 5), (1973, 6), (1973, 7), (1973, 8), (1973, 9), (1973, 10), (1973, 11), (1973, 12), (1974, 1), (1974, 2), (1974, 3), (1974, 4), (1974, 5), (1974, 6), (1974, 7), (1974, 8), (1974, 9), (1974, 10), (1974, 11), (1974, 12), (1975, 1), (1975, 2), (1975, 3), (1975, 4), (1975, 5), (1975, 6), (1975, 7), (1975, 8), (1975, 9), (1975, 10), (1975, 11), (1975, 12), (1976, 1), (1976, 2), (1976, 3), (1976, 4), (1976, 5), (1976, 6), (1976, 7), (1976, 8), (1976, 9), (1976, 10), (1976, 11), (1976, 12), (1977, 1), (1977, 2), (1977, 3), (1977, 4), (1977, 5), (1977, 6), (1977, 7), (1977, 8), (1977, 9), (1977, 10), (1977, 11), (1977, 12), (1978, 1), (1978, 2), (1978, 3), (1978, 4), (1978, 5), (1978, 6), (1978, 7), (1978, 8), (1978, 9), (1978, 10), (1978, 11), (1978, 12), (1979, 1), (1979, 2), (1979, 3), (1979, 4), (1979, 5), (1979, 6), (1979, 7), (1979, 8), (1979, 9), (1979, 10), (1979, 11), (1979, 12)]: 208.75764918327332
+2022-10-14 19:06:59 - Rotating Log - DEBUG - exec time for loop to transform songs data for [(1970, 1), (1970, 2), (1970, 3), (1970, 4), (1970, 5), (1970, 6), (1970, 7), (1970, 8), (1970, 9), (1970, 10), (1970, 11), (1970, 12), (1971, 1), (1971, 2), (1971, 3), (1971, 4), (1971, 5), (1971, 6), (1971, 7), (1971, 8), (1971, 9), (1971, 10), (1971, 11), (1971, 12), (1972, 1), (1972, 2), (1972, 3), (1972, 4), (1972, 5), (1972, 6), (1972, 7), (1972, 8), (1972, 9), (1972, 10), (1972, 11), (1972, 12), (1973, 1), (1973, 2), (1973, 3), (1973, 4), (1973, 5), (1973, 6), (1973, 7), (1973, 8), (1973, 9), (1973, 10), (1973, 11), (1973, 12), (1974, 1), (1974, 2), (1974, 3), (1974, 4), (1974, 5), (1974, 6), (1974, 7), (1974, 8), (1974, 9), (1974, 10), (1974, 11), (1974, 12), (1975, 1), (1975, 2), (1975, 3), (1975, 4), (1975, 5), (1975, 6), (1975, 7), (1975, 8), (1975, 9), (1975, 10), (1975, 11), (1975, 12), (1976, 1), (1976, 2), (1976, 3), (1976, 4), (1976, 5), (1976, 6), (1976, 7), (1976, 8), (1976, 9), (1976, 10), (1976, 11), (1976, 12), (1977, 1), (1977, 2), (1977, 3), (1977, 4), (1977, 5), (1977, 6), (1977, 7), (1977, 8), (1977, 9), (1977, 10), (1977, 11), (1977, 12), (1978, 1), (1978, 2), (1978, 3), (1978, 4), (1978, 5), (1978, 6), (1978, 7), (1978, 8), (1978, 9), (1978, 10), (1978, 11), (1978, 12), (1979, 1), (1979, 2), (1979, 3), (1979, 4), (1979, 5), (1979, 6), (1979, 7), (1979, 8), (1979, 9), (1979, 10), (1979, 11), (1979, 12)]: 2.361936330795288
+2022-10-14 20:08:08 - Rotating Log - DEBUG - Failure executing create_time_range
+2022-10-14 20:08:08 - Rotating Log - DEBUG - too many values to unpack (expected 2)
+2022-10-14 20:11:45 - Rotating Log - DEBUG - Failure executing create_time_range
+2022-10-14 20:11:45 - Rotating Log - DEBUG - too many values to unpack (expected 2)
+2022-10-14 20:12:07 - Rotating Log - DEBUG - Failure executing create_time_range
+2022-10-14 20:12:07 - Rotating Log - DEBUG - too many values to unpack (expected 2)
+2022-10-14 20:13:00 - Rotating Log - DEBUG - Failure executing create_time_range
+2022-10-14 20:13:00 - Rotating Log - DEBUG - too many values to unpack (expected 2)
+2022-10-15 07:01:46 - Rotating Log - DEBUG - Failure executing create_time_range
+2022-10-15 07:01:46 - Rotating Log - DEBUG - module 'functions.functions_parser' has no attribute 'create_year_range'
+2022-10-15 07:02:42 - Rotating Log - DEBUG - Failure executing create_time_range
+2022-10-15 07:02:42 - Rotating Log - DEBUG - 'int' object is not iterable
+2022-10-15 07:08:58 - Rotating Log - DEBUG - Failure executing create_time_range
+2022-10-15 07:08:58 - Rotating Log - DEBUG - 'int' object is not iterable
+2022-10-15 07:11:25 - Rotating Log - DEBUG - Failure executing create_time_range
+2022-10-15 07:11:25 - Rotating Log - DEBUG - 'int' object is not iterable
+2022-10-15 07:15:35 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1970: 21.292706727981567
+2022-10-15 07:15:35 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1970: 0.09991312026977539
+2022-10-15 07:17:21 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1970: 19.752312898635864
+2022-10-15 07:17:21 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1970: 0.09901094436645508
+2022-10-15 07:17:55 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1970: 20.277143716812134
+2022-10-15 07:22:24 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1970: 21.09255814552307
+2022-10-15 07:24:08 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1970: 20.023934364318848
+2022-10-15 07:24:08 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1970: 0.0990133285522461
+2022-10-15 07:32:24 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1971: 21.931698083877563
+2022-10-15 07:32:24 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1971: 0.0879964828491211
+2022-10-15 07:32:46 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1972: 22.516616344451904
+2022-10-15 07:32:46 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1972: 0.07814693450927734
+2022-10-15 07:33:06 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1973: 19.70038604736328
+2022-10-15 07:33:06 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1973: 0.0846703052520752
+2022-10-15 07:33:26 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1974: 19.883739233016968
+2022-10-15 07:33:26 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1974: 0.06902480125427246
+2022-10-15 07:33:48 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1975: 21.53096032142639
+2022-10-15 07:33:48 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1975: 0.07700586318969727
+2022-10-15 07:34:07 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1976: 19.68034315109253
+2022-10-15 07:34:07 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1976: 0.08398652076721191
+2022-10-15 07:34:28 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1977: 20.457858324050903
+2022-10-15 07:34:28 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1977: 0.08701515197753906
+2022-10-15 07:34:49 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1978: 21.140305519104004
+2022-10-15 07:34:49 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1978: 0.08101439476013184
+2022-10-15 07:35:07 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1979: 18.139978647232056
+2022-10-15 07:35:08 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1979: 0.08465719223022461
+2022-10-15 07:39:59 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1980: 18.232460498809814
+2022-10-15 07:39:59 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1980: 0.08801460266113281
+2022-10-15 07:40:16 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1981: 17.370941877365112
+2022-10-15 07:40:16 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1981: 0.08723783493041992
+2022-10-15 07:40:55 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1982: 38.32789087295532
+2022-10-15 07:40:55 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1982: 0.08399653434753418
+2022-10-15 07:41:12 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1983: 17.705003261566162
+2022-10-15 07:41:12 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1983: 0.08799314498901367
+2022-10-15 07:41:28 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1984: 15.551292896270752
+2022-10-15 07:41:28 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1984: 0.09200167655944824
+2022-10-15 07:41:44 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1985: 16.092482089996338
+2022-10-15 07:41:44 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1985: 0.07599449157714844
+2022-10-15 07:42:01 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1986: 16.28774905204773
+2022-10-15 07:42:01 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1986: 0.07497644424438477
+2022-10-15 07:42:15 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1987: 14.282569169998169
+2022-10-15 07:42:15 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1987: 0.07598495483398438
+2022-10-15 07:42:31 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1988: 15.69868278503418
+2022-10-15 07:42:31 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1988: 0.07499933242797852
+2022-10-15 07:42:45 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1989: 13.710946798324585
+2022-10-15 07:42:45 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1989: 0.07999014854431152
+2022-10-15 07:43:02 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1990: 17.80083966255188
+2022-10-15 07:43:03 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1990: 0.08900022506713867
+2022-10-15 07:43:21 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1991: 18.155294179916382
+2022-10-15 07:43:21 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1991: 0.07600116729736328
+2022-10-15 07:43:34 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1992: 12.931452512741089
+2022-10-15 07:43:34 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1992: 0.08399820327758789
+2022-10-15 07:43:55 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1993: 20.88499116897583
+2022-10-15 07:43:55 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1993: 0.07799983024597168
+2022-10-15 07:44:08 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1994: 13.281845092773438
+2022-10-15 07:44:08 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1994: 0.07800912857055664
+2022-10-15 07:44:30 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1995: 21.84348773956299
+2022-10-15 07:44:30 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1995: 0.10300445556640625
+2022-10-15 07:44:58 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1996: 27.47134494781494
+2022-10-15 07:44:58 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1996: 0.09900164604187012
+2022-10-15 07:45:11 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1997: 12.904470205307007
+2022-10-15 07:45:11 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1997: 0.10000038146972656
+2022-10-15 07:45:22 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1998: 10.96939206123352
+2022-10-15 07:45:22 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1998: 0.09898853302001953
+2022-10-15 07:45:34 - Rotating Log - DEBUG - exec time for loop to extract songs data for 1999: 11.974288940429688
+2022-10-15 07:45:34 - Rotating Log - DEBUG - exec time for loop to transform songs data for 1999: 0.07498836517333984
+2022-10-15 07:45:46 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2000: 11.797834873199463
+2022-10-15 07:45:46 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2000: 0.0729975700378418
+2022-10-15 07:46:54 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2001: 10.829514265060425
+2022-10-15 07:46:55 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2001: 0.07999086380004883
+2022-10-15 07:47:06 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2002: 11.928642749786377
+2022-10-15 07:47:07 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2002: 0.1009986400604248
+2022-10-15 07:47:17 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2003: 10.398234605789185
+2022-10-15 07:47:17 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2003: 0.0800023078918457
+2022-10-15 07:47:28 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2004: 10.647434949874878
+2022-10-15 07:47:28 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2004: 0.0770101547241211
+2022-10-15 07:47:39 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2005: 11.587209701538086
+2022-10-15 07:47:39 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2005: 0.09598851203918457
+2022-10-15 07:47:52 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2006: 12.371841192245483
+2022-10-15 07:47:52 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2006: 0.08799982070922852
+2022-10-15 07:48:02 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2007: 10.085700511932373
+2022-10-15 07:48:02 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2007: 0.08301496505737305
+2022-10-15 07:48:12 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2008: 9.823195457458496
+2022-10-15 07:48:12 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2008: 0.08000993728637695
+2022-10-15 07:48:21 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2009: 8.658369541168213
+2022-10-15 07:48:21 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2009: 0.0810079574584961
+2022-10-15 07:48:30 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2010: 8.79615068435669
+2022-10-15 07:48:30 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2010: 0.10599899291992188
+2022-10-15 07:48:38 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2011: 8.150600910186768
+2022-10-15 07:48:38 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2011: 0.08498907089233398
+2022-10-15 07:48:46 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2012: 7.85495400428772
+2022-10-15 07:48:46 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2012: 0.08599042892456055
+2022-10-15 07:48:53 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2013: 7.588879585266113
+2022-10-15 07:48:54 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2013: 0.10998868942260742
+2022-10-15 07:49:01 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2014: 7.397795677185059
+2022-10-15 07:49:01 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2014: 0.09101724624633789
+2022-10-15 07:49:11 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2015: 10.353289365768433
+2022-10-15 07:49:12 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2015: 0.09000158309936523
+2022-10-15 07:49:19 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2016: 7.3564581871032715
+2022-10-15 07:49:19 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2016: 0.07799530029296875
+2022-10-15 07:49:26 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2017: 7.032510042190552
+2022-10-15 07:49:26 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2017: 0.0875084400177002
+2022-10-15 07:49:33 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2018: 6.5762410163879395
+2022-10-15 07:49:33 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2018: 0.0909879207611084
+2022-10-15 07:49:40 - Rotating Log - DEBUG - exec time for loop to extract songs data for 2019: 6.937397718429565
+2022-10-15 07:49:40 - Rotating Log - DEBUG - exec time for loop to transform songs data for 2019: 0.09200000762939453
