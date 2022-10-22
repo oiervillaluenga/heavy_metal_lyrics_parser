@@ -173,8 +173,9 @@ results_n1['DeltaTimeN1'] = (results_n1['LastDateN1'] - results_n1['FirstDateN1'
 # We create a dataframe with the results
 results_n1_agg = results_n1.groupby(['Artist','Title','FirstDateN1','LastDateN1'])['DeltaTimeN1'].max().reset_index()
 qty_n1_artists = results_n1_agg['Artist'].nunique()
-qty_n1_songs = results_n1[['TitleArtist']].nunique()
+qty_n1_songs = results_n1['TitleArtist'].nunique()
 mean_n1_songs_per_artist = qty_n1_songs / qty_n1_artists
+mean_n1_songs_per_artist = round(mean_n1_songs_per_artist, 2)
 start_parsing = results_n1['FirstDateN1'].min()
 end_parsing = results_n1['LastDateN1'].max()
 mean_delta = results_n1['DeltaTimeN1'].mean()
@@ -229,13 +230,15 @@ try:
     ax3.get_yaxis().set_visible(False)
     plt.box(on=None)
     
-    #summary_table = header[['qty_n1_artists','qty_n1_songs','avg_n1_songs_per_artist','start_parsing','end_parsing','mean_delta','min_delta','max_delta']]
+    
+    header = header.astype(str)
+    summary_table = header[['qty_n1_artists','qty_n1_songs','avg_n1_songs_per_artist','start_parsing','end_parsing','mean_delta','min_delta','max_delta']]
     data_list = header.values.tolist()
     flat_list = [item for sublist in data_list for item in sublist]
     nested_list = [flat_list]
     columns_list = header.columns.tolist()
     # We use the dataframe to create a table
-    table = plt.table(cellText=[['r1_c1','r1_c2','r1_c3']],colLabels=columns_list,cellLoc = 'center', rowLoc = 'center',loc='center')
+    table = plt.table(cellText=summary_table.values,colLabels=columns_list,cellLoc = 'center', rowLoc = 'center',loc='center')
     #,colWidths=[0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1])
         
     # We set auto set font size to false to speed up the canvas drawing process
