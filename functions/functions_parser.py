@@ -115,7 +115,7 @@ def density_function_plot_n1_songs(path,header,data):
         
     # we plot a kde graph based on a dataframe
     data['DeltaTimeN1'].plot.kde(title = f'Prob (PDF) and Cum (CDF) Density Functions of n1 songs',ax=ax1)
-    print('kde graph ok')
+  
     # we define the axises
     ax1.set_xlabel("Weeks_n1_songs", fontsize = 16)
     ax1.set_ylabel("PDF Frecuency",color="blue",fontsize=16)
@@ -125,7 +125,6 @@ def density_function_plot_n1_songs(path,header,data):
         
     # We plot the cdf (cumulative distribution function)
     ax2.plot(data['DeltaTimeN1'], data['cdf'],color="green")
-    print('cdf graph ok')
     # We name the Y axis
     ax2.set_ylabel("% of measurements",color="red",fontsize=16)
         
@@ -136,7 +135,7 @@ def density_function_plot_n1_songs(path,header,data):
     ax3.get_yaxis().set_visible(False)
     plt.box(on=None)
     
-    summary_table = header
+    summary_table = header[['qty_n1_artists','qty_n1_songs','avg_n1_songs_per_artist','start_parsing','end_parsing','mean_delta','min_delta','max_delta']]
     # We use the dataframe to create a table
     table = plt.table(cellText=summary_table,colLabels=summary_table.columns,cellLoc = 'center', rowLoc = 'center',loc='center',colWidths=[0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15])
         
@@ -145,7 +144,6 @@ def density_function_plot_n1_songs(path,header,data):
         
     # We increase the scale of the row height
     table.scale(1, 2)
-    print('just before save fig ok')
     # We save and close the figure
     plt.savefig(f"{path}/plt_kde_N1_songs_cdf_plot.jpg")
     plt.close()

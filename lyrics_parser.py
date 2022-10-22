@@ -10,6 +10,8 @@ import os
 import tqdm
 import glob
 import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
 
 # We get the current directory 
 current_dir = os.getcwd()
@@ -167,6 +169,7 @@ results_n1 = results_n1.loc[:,~results_n1.columns.str.contains('_DROP', case=Fal
 
 # We calculate the Delta: the diff between the first and last times a song reached number1
 results_n1['DeltaTimeN1'] = (results_n1['LastDateN1'] - results_n1['FirstDateN1']) / np.timedelta64(1, 'D')
+
 # We create a dataframe with the results
 results_n1_agg = results_n1.groupby(['Artist','Title','FirstDateN1','LastDateN1'])['DeltaTimeN1'].max().reset_index()
 qty_n1_artists = results_n1_agg['Artist'].nunique()
@@ -179,20 +182,73 @@ min_delta = results_n1['DeltaTimeN1'].min()
 max_delta = results_n1['DeltaTimeN1'].max()
 n1_header_data = [qty_n1_artists,qty_n1_songs,mean_n1_songs_per_artist,start_parsing,end_parsing,mean_delta,min_delta,max_delta]
 list_columns = ['qty_n1_artists','qty_n1_songs','avg_n1_songs_per_artist','start_parsing','end_parsing','mean_delta','min_delta','max_delta']
+
 # We create a cdf graph for the overall distribution of the songs
 header_n1_songs = pd.DataFrame(data = [n1_header_data], columns = list_columns)
 header_n1_songs.columns = list_columns
+results_n1_agg = results_n1_agg.sort_values(by=['DeltaTimeN1'])
 results_n1_agg['cumsum_songs'] = results_n1_agg.reset_index().index
 all_songs = len(results_n1_agg.index)
 results_n1_agg['cdf'] = results_n1_agg['cumsum_songs']*100 / all_songs
 
-try: 
-    fp.density_function_plot_n1_songs(current_dir,header_n1_songs,results_n1_agg)
-except Exception as e:
-    print('Error trying to create a cdf graph for n1 songs')
-    print(e)
-    logger.debug(f'{e}')
+data = results_n1_agg.copy()
 
+header = header_n1_songs.copy()
+
+try:
+    # We set the characteristics of the plot
+    gridsize = (4,4)
+    fig = plt.figure(figsize = (12.8,9.6))
+    plt.Figure(dpi=500)
+    # We create 2 axes: ax1 for the top part where it will hold the graph and ax3 for the information table
+    ax1 = plt.subplot2grid(gridsize,(0,0),colspan = 4, rowspan = 3)
+    ax3 = plt.subplot2grid(gridsize, (3, 0),colspan = 4, rowspan = 1)
         
+    # We define ax1 as the current axe on the plot
+    plt.sca(ax1)        
+        
+    # we plot a kde graph based on a dataframe
+    data['DeltaTimeN1'].plot.kde(title = f'Prob (PDF) and Cum (CDF) Density Functions of n1 songs',ax=ax1)
+  
+    # we define the axises
+    ax1.set_xlabel("Weeks_n1_songs", fontsize = 16)
+    ax1.set_ylabel("PDF Frecuency",color="blue",fontsize=16)
+        
+    # We create a twin object for two different y-axis on the sample plot
+    ax2=ax1.twinx()
+        
+    # We plot the cdf (cumulative distribution function)
+    ax2.plot(data['DeltaTimeN1'], data['cdf'],color="green")
+    # We name the Y axis
+    ax2.set_ylabel("% of measurements",color="red",fontsize=16)
+        
+    # We set ax3 as the current axes 
+    plt.sca(ax3)
+    # We hide all the axises and borders
+    ax3.get_xaxis().set_visible(False)
+    ax3.get_yaxis().set_visible(False)
+    plt.box(on=None)
+    
+    #summary_table = header[['qty_n1_artists','qty_n1_songs','avg_n1_songs_per_artist','start_parsing','end_parsing','mean_delta','min_delta','max_delta']]
+    data_list = header.values.tolist()
+    flat_list = [item for sublist in data_list for item in sublist]
+    nested_list = [flat_list]
+    columns_list = header.columns.tolist()
+    # We use the dataframe to create a table
+    table = plt.table(cellText=[['r1_c1','r1_c2','r1_c3']],colLabels=columns_list,cellLoc = 'center', rowLoc = 'center',loc='center')
+    #,colWidths=[0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1])
+        
+    # We set auto set font size to false to speed up the canvas drawing process
+    table.auto_set_font_size(False)    
+        
+    # We increase the scale of the row height
+    table.scale(1, 2)
+    # We save and close the figure
+    plt.savefig(f"{current_dir}/plt_kde_N1_songs_cdf_plot.jpg")
+    plt.close()
+
+except Exception as e:
+    print('error when creating graph')
+    print(e)       
 
         
