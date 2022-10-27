@@ -1,15 +1,23 @@
-How has top chart music evolved during the years? 
+How has top chart music evolved during the years?
+N1 songs now last longer than what they used to last before, i.e. less variety of n1 songs
+
 What are the properties of n1 songs?
+themes, lenght of lyrics, length of stay as n1, start at ranks, length at ranks
+
 What are the properties of music charts?
+qty of songs and artists per decade
+qty of 
 
 DESCRIPTIVE ANALYSIS FOR SONGS: ¿what are the generic attributes of n1 songs per year?
+
 
 Analisis of n1 songs attributes in a year
 1) TIME Avg duration of n1 songs at n1 --> 
 	first_time_as_n1: min(parsing_time) when rank = 1 and previous rank > 1
 	last_time_as_n1: max(parsing_time) when rank = 1 and previous rank = 1
-2) TIME Avg duration of songs in charts --> max(parsing_time) - entry_date
+DONE 
 
+2) TIME Avg duration of songs in charts --> max(parsing_time) - entry_date
 3) QTY Avg qty of positions climbed of n1 songs from entry to peak (min(parsing_time) when rank = 1 and previous rank > 1 - min(entry date into charts))
 4) QTY Avg qty of positions climbed of n1 songs from bottom to peak (max(rank) when parsing_date(max_rank) < parsing_date(rank=1) - 1)
 5) QTY Avg qty of positions descended from top to bottom max(rank) when parsing_date(max(rank) > parsing_date(rank=1) 
