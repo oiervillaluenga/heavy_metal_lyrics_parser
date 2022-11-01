@@ -7,7 +7,7 @@ import itertools
 import os
 import glob
 from functions import functions_parser as fp
-from functions import configuration as cf
+from functions import log_conf as cf
 
 # I check if there already exists a parquet file in the working directory where the data is stored 
 while os.path.isfile(cf.all_data_file) == False:
