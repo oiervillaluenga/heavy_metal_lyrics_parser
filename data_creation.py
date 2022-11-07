@@ -28,7 +28,7 @@ while os.path.isfile(cf.all_data_file) == False:
     # we iterate through each year_month combination in the list of years to extract the results of the billboard songs and we append each df to the dictionary
     for date,name in zip(data_extraction_dates,list_years_months):
         # we create an empty dictionary where we will store the dataframes with the billboard song results for each decade
-        data_file = cf.current_dir + '\\data' + f'{name[0]}_{name[1]}.parquet'
+        data_file = cf.current_dir + '\\data\\' + f'{name[0]}_{name[1]}.parquet'
         if os.path.isfile(data_file) == False:
             df_collection = {}
             start = time.time()

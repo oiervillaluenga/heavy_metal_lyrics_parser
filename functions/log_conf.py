@@ -6,10 +6,10 @@ from logging.handlers import TimedRotatingFileHandler
 
 # We get the current directory 
 current_dir = os.getcwd()
+charts_dir = current_dir + '\\charts\\'
 all_data_file = current_dir + '\\data.parquet'
 log = current_dir + '\\log.txt'
 
-current_dir = os.getcwd()
 
 # We open the configuration file and we load it into the config variable
 yaml_file = current_dir + '\\config.yaml'

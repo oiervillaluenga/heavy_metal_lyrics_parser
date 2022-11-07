@@ -63,10 +63,10 @@ def create_month_range(year,month):
     combined_list = list(itertools.product(year, month,days))
     return combined_list
 
-def create_header_and_data(start_year,end_year,base_df,attribute):
+def create_data(start_year,end_year,base_df,filter_date,attribute):
     # We filter the data for the start and end years
-    results_filtered = base_df[(base_df['FirstDateN1'] > datetime.datetime(start_year,1,1,0,0)) \
-        & (base_df['FirstDateN1'] < datetime.datetime(end_year,1,1,0,0))]
+    results_filtered = base_df[(base_df[f'{filter_date}'] > datetime.datetime(start_year,1,1,0,0)) \
+        & (base_df[f'{filter_date}'] < datetime.datetime(end_year,1,1,0,0))]
     # We sort the values from the smallest to the largest of each song at n1 position
     results_filtered = results_filtered.sort_values(by=[f'{attribute}'])
     # We create a cumulative sum
@@ -75,27 +75,39 @@ def create_header_and_data(start_year,end_year,base_df,attribute):
     all_songs = len(results_filtered.index)
     results_filtered['cdf'] = results_filtered['cumsum_songs']*100 / all_songs
     data = results_filtered.copy()
+    return data
     
+def create_header(start_year,end_year,base_df,filter_date,attribute):
+    # We filter the data for the start and end years
+    results_filtered = base_df[(base_df[f'{filter_date}'] > datetime.datetime(start_year,1,1,0,0)) \
+        & (base_df[f'{filter_date}'] < datetime.datetime(end_year,1,1,0,0))]
+    # We sort the values from the smallest to the largest of each song at n1 position
+    results_filtered = results_filtered.sort_values(by=[f'{attribute}'])
+    # We create a cumulative sum
+    results_filtered['cumsum_songs'] = results_filtered.reset_index().index
+    # we create a percentage based on the cumsum and the total length of the df
+    all_songs = len(results_filtered.index)
+    results_filtered['cdf'] = results_filtered['cumsum_songs']*100 / all_songs
+    data = results_filtered.copy()
     # We get the values for the information that we will put into the table for the graph
-    qty_n1_artists = results_filtered['Artist'].nunique()
-    qty_n1_songs = results_filtered['Title'].nunique()
-    songs_per_artist = round(qty_n1_songs / qty_n1_artists,2)
-    start_parsing = results_filtered['FirstDateN1'].min()
-    end_parsing = results_filtered['LastDateN1'].max()
+    qty_artists = results_filtered['Artist'].nunique()
+    qty_songs = results_filtered['Title'].nunique()
+    songs_per_artist = round(qty_songs / qty_artists,2)
+    start_parsing = results_filtered[f'{filter_date}'].min()
+    end_parsing = results_filtered[f'{filter_date}'].max()
     mean = round(results_filtered[f'{attribute}'].mean(),2)
     min = round(results_filtered[f'{attribute}'].min(),0)
     max = results_filtered[f'{attribute}'].max()
-    
     # We create a list with the information
-    header_data = [qty_n1_artists,qty_n1_songs,songs_per_artist,start_parsing,end_parsing,mean,min,max]
-    header_columns = ['qty_n1_artists','qty_n1_songs','songs_per_artist','start_parsing','end_parsing','mean','min','max']
+    header_data = [qty_artists,qty_songs,songs_per_artist,start_parsing,end_parsing,mean,min,max]
+    header_columns = ['qty_artists','qty_songs','songs_per_artist','start_parsing','end_parsing','mean','min','max']
 
     # We create a cdf graph for the overall distribution of the songs
     header = pd.DataFrame(data = [header_data], columns = header_columns)
     #header_n1_songs.columns = list_columns
-    return data, header
+    return header
 
-def density_function_plot(path,header,data,start_year,end_year,attribute):
+def density_function_plot(path,header,data,start_year,end_year,name_graph,attribute):
     """Create a plot using the header and the data dataframes for n1 songs
     :param path: the path to where the plot will be saved
     :param data: a dataframe that contains all measurement points for all characteristics
@@ -113,10 +125,10 @@ def density_function_plot(path,header,data,start_year,end_year,attribute):
     plt.sca(ax1)        
         
     # we plot a kde graph based on a dataframe
-    data[f'{attribute}'].plot.kde(title = f'Prob and Cum (PDF/CDF) Density Functions of N1 Songs and {attribute}',ax=ax1)
+    data[f'{attribute}'].plot.kde(title = f'Prob and Cum (PDF/CDF) Density Functions of {name_graph} and {attribute}',ax=ax1)
   
     # we define the axises
-    ax1.set_xlabel(f'N1 Songs {attribute}', fontsize = 16)
+    ax1.set_xlabel(f'{name_graph} {attribute}', fontsize = 16)
     ax1.set_ylabel("PDF Frecuency",color="blue",fontsize=16)
         
     # We create a twin object for two different y-axis on the sample plot
@@ -135,7 +147,7 @@ def density_function_plot(path,header,data,start_year,end_year,attribute):
     plt.box(on=None)
     
     header = header.astype(str)
-    summary_table = header[['qty_n1_artists','qty_n1_songs','songs_per_artist','start_parsing','end_parsing','mean','min','max']]
+    summary_table = header[['qty_artists','qty_songs','songs_per_artist','start_parsing','end_parsing','mean','min','max']]
     columns_list = header.columns.tolist()
     # We use the dataframe to create a table
     table = plt.table(cellText=summary_table.values,colLabels=columns_list,cellLoc = 'center', rowLoc = 'center',loc='center'\
@@ -148,5 +160,6 @@ def density_function_plot(path,header,data,start_year,end_year,attribute):
     # We increase the scale of the row height
     table.scale(1, 2)
     # We save and close the figure
-    plt.savefig(f"{path}/cdf_{attribute}_{start_year}_{end_year}.jpg")
+    plt.savefig(f"{path}/cdf_{name_graph}_{attribute}_{start_year}_{end_year}.jpg")
     plt.close()
+
