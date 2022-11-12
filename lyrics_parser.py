@@ -212,34 +212,36 @@ for start_year, end_year in decades:
         print('error when creating dataframes for graph DeltaTimeN1')
         print(e)               
 
-    try:
-        fp.density_function_plot(cf.charts_dir,header,data,start_year,end_year,'DeltaTimeN1')
+    try: 
+        fp.density_function_plot(cf.charts_dir,header,data,start_year,end_year,'Time at N1','DeltaTimeN1')
     except Exception as e:
         print('error when creating graph for DeltaTimeN1')
         print(e)   
 
     # We create graphs for the BottomPos attribute
     try:
-        data, header = fp.create_header_and_data(start_year,end_year,summary_n1_data,'BottomPos')
+        data = fp.create_data(start_year,end_year,summary_n1_data,'FirstDateN1','BottomPos')
+        header = fp.create_header(start_year,end_year,summary_n1_data,'FirstDateN1','BottomPos')        
     except Exception as e:
         print('error when creating dataframes for graph BottomPos')
         print(e)               
 
     try:
-        fp.density_function_plot(cf.charts_dir,header,data,start_year,end_year,'BottomPos')
+        fp.density_function_plot(cf.charts_dir,header,data,start_year,end_year,'Positions climbed from bottom to N1','BottomPos')
     except Exception as e:
         print('error when creating graph for BottomPos')
         print(e)  
 
     # We create graphs for the DeltaTimeClimb attribute
     try:
-        data, header = fp.create_header_and_data(start_year,end_year,summary_n1_data,'DeltaTimeClimb')
+        data = fp.create_data(start_year,end_year,summary_n1_data,'FirstDateN1','DeltaTimeClimb')
+        header = fp.create_header(start_year,end_year,summary_n1_data,'FirstDateN1','DeltaTimeClimb')          
     except Exception as e:
         print('error when creating dataframes for graph DeltaTimeClimb')
         print(e)               
 
     try:
-        fp.density_function_plot(cf.charts_dir,header,data,start_year,end_year,'DeltaTimeClimb')
+        fp.density_function_plot(cf.charts_dir,header,data,start_year,end_year,'Time to climb from bottom to N1','DeltaTimeClimb')
     except Exception as e:
         print('error when creating graph for DeltaTimeClimb')
         print(e)  
