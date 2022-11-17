@@ -62,15 +62,25 @@ summary_all_data['DeltaClimb'] = summary_all_data['BottomPos'] - summary_all_dat
 # 2) The peaking point of the song was not captured by the data collection frequency
 
 summary_all_data['DeltaPos'] = summary_all_data['TopPos'] - summary_all_data['OverallPeakPos']
-summary_all_data = summary_all_data[summary_all_data['DeltaPos']==0] 
+summary_all_data = summary_all_data[summary_all_data['DeltaPos'] == 0] 
 summary_all_data['TimeInCharts'] = (summary_all_data['LastDate'] - summary_all_data['EntryDate']) / np.timedelta64(1, 'D')
 
 summary_all_data = summary_all_data[summary_all_data['TimeInCharts'] >= 0]
-# We do another sanity check and we select the songs where the OverallTotalWeeks*7 > TimeInCharts 
+
+# We do another sanity check and we select the songs where the beginning and end of songs is not before or after the time range of analysis
+before_filter = datetime.datetime.strptime('1970-01-01', '%Y-%m-%d')
+after_filter = datetime.datetime.strptime('2019-12-24', '%Y-%m-%d')
+summary_all_data['DateFilter'] = 0
+summary_all_data.loc[summary_all_data['EntryDate'] < before_filter, 'DateFilter'] = 1
+summary_all_data.loc[summary_all_data['LastDate'] > after_filter, 'DateFilter'] = 1
+summary_all_data = summary_all_data[summary_all_data['DateFilter'] == 0]
+
+# We do another sanity check and we select the original lenght of the song in charts is bigger than the calcuated time in charts
+
 summary_all_data['DeltaTimeInCharts'] =  summary_all_data['OverallTotalWeeks']*7 - summary_all_data['TimeInCharts']
 summary_all_data = summary_all_data[summary_all_data['DeltaTimeInCharts'] >= 0]
 
-summary_all_data = summary_all_data.drop(['DeltaPos','DeltaTimeInCharts'], axis=1)
+summary_all_data = summary_all_data.drop(['DeltaPos'], axis=1)
 summary_n1 = summary_all_data[summary_all_data['N1Song'] == 1]
 summary_rest = summary_all_data[summary_all_data['N1Song'] == 0]
 
