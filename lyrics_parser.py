@@ -10,6 +10,11 @@ import data_creation as dc
 
 # We import the results from the data creation module
 results = dc.results
+
+# We remove the entries with no Title or no Artist
+results = results.loc[results['Title'].str.len() > 3].copy()
+results = results.loc[results['Artist'].str.len() > 3].copy()
+
 results['ThisWeekPos'] = results['ThisWeekPos'].fillna(0).astype(int)
 results['ThisWeekPeakPos'] = results['ThisWeekPeakPos'].fillna(0).astype(int)
 results['ThisWeekTotalWeeks'] = results['ThisWeekTotalWeeks'].fillna(0).astype(int)
@@ -40,10 +45,37 @@ summary_all_data['N1Song'] = summary_all_data['N1Song'].replace(np.nan,0)
 # We calculate the attributes that we want to draw for each song
 max_date = results.groupby(['Artist','Title'])[['ParsingDate']].max().reset_index()
 max_date = max_date.rename(columns={'ParsingDate':'LastDate'})
-bottom_pos = results.groupby(['Artist','Title'])[['ThisWeekPos']].max().reset_index()
-bottom_pos = bottom_pos.rename(columns={'ThisWeekPos':'BottomPos'})
+
 top_pos = results.groupby(['Artist','Title'])[['ThisWeekPos']].min().reset_index()
 top_pos = top_pos.rename(columns={'ThisWeekPos':'TopPos'})
+
+# For the bottom position, we ensure that the position reflects only the before peak positions
+# We get the date of the top positions for n1 songs
+date_first_time_n1 = results[results['ThisWeekPeakPos'] == 1].groupby(['Artist','Title'])[['ParsingDate']].min().reset_index()
+date_first_time_n1 = date_first_time_n1.rename(columns={'ParsingDate':'DateTopPos'})
+date_first_time_n1['N1Song'] = 1
+
+# We get the dates of the top positions for the no n1 songs
+date_top_pos_no_n1 = results[results['OverallPeakPos'] > 1].groupby(['Artist','Title','ParsingDate','OverallPeakPos'])[['ThisWeekPos']].min().reset_index()
+date_top_pos_no_n1 = date_top_pos_no_n1.loc[date_top_pos_no_n1['OverallPeakPos'] == date_top_pos_no_n1['ThisWeekPos']].copy()
+date_top_pos_no_n1 = date_top_pos_no_n1.groupby(['Artist','Title'])[['ParsingDate']].min().reset_index()
+date_top_pos_no_n1 = date_top_pos_no_n1.rename(columns={'ParsingDate':'DateTopPos'})
+date_top_pos_no_n1['N1Song'] = 0
+
+# We join both dataframes
+date_top_pos = date_first_time_n1.append(date_top_pos_no_n1, ignore_index=True)
+
+# We merge the calculated dataframe to the results dataframe
+bottom_pos_results = results.merge(date_top_pos,how='left',left_on=['Artist','Title'], right_on = ['Artist','Title'],suffixes = ('', '_DROP'))
+bottom_pos_results = bottom_pos_results.loc[:,~bottom_pos_results.columns.str.contains('_DROP', case=False)]
+bottom_pos_results_sum = bottom_pos_results.groupby(['Artist','Title'])[['ThisWeekPos']].max().reset_index()
+
+# We filter the rows that reflect dates prior to the top positions
+bottom_pos_results_filtered = bottom_pos_results.loc[bottom_pos_results['ParsingDate'] <= bottom_pos_results['DateTopPos']]
+bottom_pos_results_filtered_sum = bottom_pos_results_filtered.groupby(['Artist','Title'])[['ThisWeekPos']].max().reset_index()
+
+bottom_pos = bottom_pos_results_filtered.groupby(['Artist','Title'])[['ThisWeekPos']].max().reset_index()
+bottom_pos = bottom_pos.rename(columns={'ThisWeekPos':'BottomPos'})
 
 # We merge the attributes
 summary_all_data = summary_all_data.merge(max_date,how='left',left_on=['Artist','Title'], right_on = ['Artist','Title'],suffixes = ('', '_DROP'))
@@ -55,7 +87,11 @@ summary_all_data = summary_all_data.loc[:,~summary_all_data.columns.str.contains
 summary_all_data = summary_all_data.merge(top_pos,how='left',left_on=['Artist','Title'], right_on = ['Artist','Title'],suffixes = ('', '_DROP'))
 summary_all_data = summary_all_data.loc[:,~summary_all_data.columns.str.contains('_DROP', case=False)]
 
+summary_all_data = summary_all_data.merge(first_date_n1,how='left',left_on=['Artist','Title'], right_on = ['Artist','Title'],suffixes = ('', '_DROP'))
+summary_all_data = summary_all_data.loc[:,~summary_all_data.columns.str.contains('_DROP', case=False)]
+
 summary_all_data['DeltaClimb'] = summary_all_data['BottomPos'] - summary_all_data['TopPos']
+
 # We do a sanity check and we select the songs where the OverallPeakPos and top positions are the same
 # It could be that they are not the same because 
 # 1) The song peaked before the 1970 or 2010 ranges 
