@@ -163,3 +163,19 @@ def density_function_plot(path,header,data,start_year,end_year,name_graph,attrib
     plt.savefig(f"{path}/cdf_{name_graph}_{attribute}_{start_year}_{end_year}.jpg")
     plt.close()
 
+def get_duplicates_df(keys,df_as_filter,df_to_filter):
+    """It removes duplicates existing in one dataframe from another dataframe, based on the set of keys provided.
+    :param keys: a list containing the column names to be used as a filter
+    :df_as_filter: the dataframe to be used to filter 
+    :df_to_filter: the dataframe from which to remove the records
+    >>> remove_duplicates_df(keys,df_as_filter,df_to_filter) 
+    new_dataframe
+    """     
+    # We set the dataframe index in the chosen columns
+    i_to_filter = df_to_filter.set_index(keys).index
+    i_as_filter = df_as_filter.set_index(keys).index
+
+    # We get the a filtered dataframe without the duplicates
+    filtered_dataframe = df_to_filter[i_to_filter.isin(i_as_filter)]
+    
+    return filtered_dataframe
