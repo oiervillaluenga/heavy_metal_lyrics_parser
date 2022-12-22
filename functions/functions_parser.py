@@ -179,3 +179,4 @@ def get_duplicates_df(keys,df_as_filter,df_to_filter):
     filtered_dataframe = df_to_filter[i_to_filter.isin(i_as_filter)]
     
     return filtered_dataframe
+

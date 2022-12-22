@@ -87,7 +87,7 @@ date_top_pos_no_n1 = date_top_pos_no_n1.rename(columns={'ParsingDate':'DateTopPo
 date_top_pos_no_n1['N1Song_x'] = 0
 
 # We join both dataframes
-date_top_pos = date_first_time_n1.append(date_top_pos_no_n1, ignore_index=True)
+date_top_pos = pd.concat([date_first_time_n1,date_top_pos_no_n1],ignore_index=True)
 
 # We merge the calculated dataframe to the results dataframe
 bottom_pos_results = results.merge(date_top_pos,how='left',left_on=['Artist','Title'], right_on = ['Artist','Title'],suffixes = ('', '_DROP'))
@@ -161,33 +161,4 @@ analysis_per_song_artist.loc[(analysis_per_song_artist['EntryYear'] > 1979) &  (
 analysis_per_song_artist.loc[(analysis_per_song_artist['EntryYear'] > 1989) &  (analysis_per_song_artist['EntryYear'] < 2000),'EntryDecade'] = 1990
 analysis_per_song_artist.loc[(analysis_per_song_artist['EntryYear'] > 1999) &  (analysis_per_song_artist['EntryYear'] < 2010),'EntryDecade'] = 2000
 analysis_per_song_artist.loc[(analysis_per_song_artist['EntryYear'] > 2009) &  (analysis_per_song_artist['EntryYear'] < 2020),'EntryDecade'] = 2010
-
-# We create a summary table with data aggregated by decade
-def f(x):
-    d = {}
-    d['CountSongs'] = x['Title'].count()
-    d['CountN1Songs'] = x['N1Song'].sum()
-    d['SongsPerArtist'] = x['Title'].count() / x['Artist'].nunique()
-
-    d['MeanEntryPos'] = x['EntryPos'].mean()
-    d['MeanBottomPos'] = x['BottomPos'].mean()     
-    d['MeanTopPos'] = x['TopPos'].mean()
-    
-    d['MeanQtyPosClimbed'] = x['QtyPosClimbedTotal'].mean()
-    d['MeanQtyPosClimbedEntry'] = x['QtyPosClimbedEntry'].mean()
-    
-    d['MeanDaysInCharts'] = x['DaysInCharts'].mean()
-    d['MeanDaysToClimbToTop'] = x['DaysToClimbToTop'].mean()  
-    d['MeanDaysInTop'] = x['DaysInCharts'].mean()    
-    
-
-
-     
-    return pd.Series(d, index=['CountSongs', 'CountN1Songs','SongsPerArtist' \
-        ,'MeanEntryPos', 'MeanBottomPos', 'MeanTopPos'\
-          ,'MeanQtyPosClimbed',  'MeanQtyPosClimbedEntry'\
-            ,'MeanDaysInCharts','MeanDaysToClimbToTop','MeanDaysInTop'\
-                ])
-
-songs_decade = analysis_per_song_artist.groupby('EntryDecade').apply(f)
 
