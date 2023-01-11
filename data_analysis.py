@@ -9,6 +9,7 @@ from scipy.stats import mannwhitneyu
 from functions import log_conf as cf
 from functions import functions_parser as fp
 from itertools import permutations
+from itertools import product
 import data_processing as dp
 
 # First we import the data with the features as created in the data processing module
@@ -54,18 +55,20 @@ for entry in statistics_columns:
 feature_normality = pd.DataFrame([normality_results],columns = statistics_columns)
 
 decades = analysis_per_song_artist['EntryDecade'].unique()
+decades = np.sort(decades)
 
 normality_results_decade = []
 normality_features = []
 normality_decades = []
 
-for feature in statistics_columns:
-    for decade in decades:
-        data = analysis_per_song_artist[f'{feature}'][analysis_per_song_artist['EntryDecade'] == decade].copy()
-        k2, pvalue = normaltest(data)
-        normality_results_decade.append(round(pvalue,4))
-        normality_features.append(feature)
-        normality_decades.append(decade)
+feature_decade_list = list(product(statistics_columns,decades))
+
+for feature, decade in feature_decade_list:
+    data = analysis_per_song_artist[f'{feature}'][analysis_per_song_artist['EntryDecade'] == decade].copy()
+    k2, pvalue = normaltest(data)
+    normality_results_decade.append(round(pvalue,4))
+    normality_features.append(feature)
+    normality_decades.append(decade)
 
 normality_df = pd.DataFrame(list(zip(normality_features,normality_decades,normality_results_decade)), columns=['norm_feature','norm_decade','norm_results'])
 
@@ -122,6 +125,5 @@ for start,end in zip(permutations_df['start'].tolist(),permutations_df['end'].to
         eq_feature_n1.append(feature)
         eq_results_n1.append(round(p,4))
 
-equivalence_df_n1 = pd.DataFrame(list(zip(eq_start_n1,eq_end_n1,eq_feature_n1,eq_results_n1)), columns=['eq_start','eq_end','eq_feature','eq_results'])
-
-print('equivalence finished')
+equivalence_df_n1 = pd.DataFrame(list(zip(eq_start_n1,eq_end_n1,eq_feature_n1,eq_results_n1))\
+    , columns=['eq_start','eq_end','eq_feature','eq_results'])
